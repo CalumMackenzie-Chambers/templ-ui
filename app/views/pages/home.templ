@@ -4,6 +4,7 @@ import (
 	"github.com/CalumMackenzie-Chambers/templ-ui/components/button"
 	"github.com/CalumMackenzie-Chambers/templ-ui/components/accordion"
 	"github.com/CalumMackenzie-Chambers/templ-ui/components/alert"
+	"github.com/CalumMackenzie-Chambers/templ-ui/components/avatar"
 )
 
 templ Home() {
@@ -155,7 +156,7 @@ templ Home() {
 				<div class="max-w-xl">
 					@alert.Alert(alert.AlertProps{
 								Variant: alert.Danger,
-								Icon: alert.Warning(),  // or any appropriate icon
+								Icon: alert.Warning(),
 								Title: "Danger Alert",
 								Text: "This is the danger alert variant that uses the danger color as foreground with base background and border colors.",
 						})
@@ -163,12 +164,17 @@ templ Home() {
 				<div class="max-w-xl">
 					@alert.Alert(alert.AlertProps{
 								Variant: alert.DangerMuted,
-								Icon: alert.Warning(),  // or any appropriate icon
+								Icon: alert.Warning(),
 								Title: "Danger Muted Alert",
 								Text: "This is the danger muted alert variant that uses the danger color as foreground with danger-muted background and border colors - Use with caution, may not pass accessibility.",
 						})
 				</div>
 			</div>
+		</section>
+		<section class="space-y-4">
+			<h2 class="text-2xl lg:text3xl font-bold">Avatar</h2>
+			@avatar.Avatar("https://avatars.githubusercontent.com/u/87911622?v=4", "CM")
+			@avatar.AvatarSvg()
 		</section>
 	</main>
 }
