@@ -3,6 +3,7 @@ package pages;
 import (
 	"github.com/CalumMackenzie-Chambers/templ-ui/components/button"
 	"github.com/CalumMackenzie-Chambers/templ-ui/components/accordion"
+	"github.com/CalumMackenzie-Chambers/templ-ui/components/alert"
 )
 
 templ Home() {
@@ -74,7 +75,7 @@ templ Home() {
 			</div>
 		</section>
 		<section id="accordion">
-			<div class="max-w-lg rounded border p-8">
+			<div class="max-w-xl rounded border p-8">
 				<h2 class="text-2xl lg:text3xl font-bold mb-4">Accordions</h2>
 				<h3 class="text-lg text-muted-foreground">Single</h3>
 				@accordion.Accordion(accordion.Single ,"") {
@@ -113,6 +114,60 @@ templ Home() {
 					Content: "Yes. It's animated by default, but you can disable it if you prefer.",
 				})
 				}
+			</div>
+		</section>
+		<section id="alert">
+			<h2 class="text-2xl lg:text3xl font-bold mb-4">Alerts</h2>
+			<h3 class="text-lg text-muted-foreground mb-2">Variants</h3>
+			<div class="space-y-4">
+				<div class="max-w-xl">
+					@alert.Alert(alert.AlertProps{
+						Variant: alert.Default,
+						Icon: alert.Info(),
+						Title: "Default Alert",
+						Text: "This is the default alert variant that will use the standard foreground and background colors",
+					})
+				</div>
+				<div class="max-w-xl">
+					@alert.Alert(alert.AlertProps{
+						Variant: alert.DefaultMuted,
+						Icon: alert.Info(),
+						Title: "Default Muted Alert",
+						Text: "This is the default muted alert variant that will use the standard foreground and muted background colors",
+					})
+				</div>
+				<div class="max-w-xl">
+					@alert.Alert(alert.AlertProps{
+						Variant: alert.Primary,
+						Icon: alert.CommandLine(),
+						Title: "Primary Alert",
+						Text: "This is the primary alert variant that will use the primary color as foreground and base background colors",
+					})
+				</div>
+				<div class="max-w-xl">
+					@alert.Alert(alert.AlertProps{
+						Variant: alert.PrimaryMuted,
+						Icon: alert.CommandLine(),
+						Title: "Primary Muted Alert",
+						Text: "This is the primary muted alert variant that will use the primary color as foreground and primary muted background colors - Use with caution, may not pass accesibility",
+					})
+				</div>
+				<div class="max-w-xl">
+					@alert.Alert(alert.AlertProps{
+								Variant: alert.Danger,
+								Icon: alert.Warning(),  // or any appropriate icon
+								Title: "Danger Alert",
+								Text: "This is the danger alert variant that uses the danger color as foreground with base background and border colors.",
+						})
+				</div>
+				<div class="max-w-xl">
+					@alert.Alert(alert.AlertProps{
+								Variant: alert.DangerMuted,
+								Icon: alert.Warning(),  // or any appropriate icon
+								Title: "Danger Muted Alert",
+								Text: "This is the danger muted alert variant that uses the danger color as foreground with danger-muted background and border colors - Use with caution, may not pass accessibility.",
+						})
+				</div>
 			</div>
 		</section>
 	</main>
