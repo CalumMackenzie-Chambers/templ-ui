@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
-	"github.com/CalumMackenzie-Chambers/templ-ui/docs/handlers"
+	"github.com/CalumMackenzie-Chambers/templ-ui/app/handlers"
 )
 
 func main() {
@@ -12,7 +12,7 @@ func main() {
 	e.Pre(middleware.RemoveTrailingSlash())
 	e.Use(middleware.Recover())
 
-	e.Static("/", "./docs/static")
+	e.Static("/", "./app/static")
 
 	indexHandler := handlers.IndexHandler{}
 	e.GET("/", indexHandler.GetHome)

@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/CalumMackenzie-Chambers/templ-ui/docs/views/layouts"
-	"github.com/CalumMackenzie-Chambers/templ-ui/docs/views/pages"
+	"github.com/CalumMackenzie-Chambers/templ-ui/app/views/layouts"
+	"github.com/CalumMackenzie-Chambers/templ-ui/app/views/pages"
 	"github.com/labstack/echo/v4"
 )
 

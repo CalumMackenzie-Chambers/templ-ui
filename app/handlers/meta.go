@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/CalumMackenzie-Chambers/templ-ui/docs/views/layouts"
+	"github.com/CalumMackenzie-Chambers/templ-ui/app/views/layouts"
 )
 
 var indexMeta = layouts.PageData{
