@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    --background: 0deg, 0%, 100%;
+    --foreground: 240deg, 10%, 3.9%;
+
+    --primary: 142deg, 76%, 36%;
+    --primary-hover: 138deg, 49%, 45%;
+    --primary-muted: 133deg, 37%, 89%;
+    --primary-foreground: 356, 100%, 97%;
+
+    --muted-background: 240deg, 5%, 96%;
+    --muted-foreground: 240deg, 4%, 46%;
+
+    --danger: 347deg, 77%, 50%;
+    --danger-hover: 347deg, 75%, 46%;
+    --danger-muted: 354deg, 85%, 92%;
+    --danger-foreground: 356deg, 100%, 97%;
+
+    --border: 240, 5.9%, 90%;
+  }
+
+  .dark {
+    --background: 18deg, 17%, 4%;
+    --foreground: 0deg, 0%, 95%;
+
+    --primary: 142deg, 71%, 45%;
+    --primary-hover: 140deg, 64%, 43%;
+    --primary-muted: 123deg, 25%, 19%;
+    --primary-foreground: 145deg, 80%, 10%;
+
+    --muted-background: 0deg, 0%, 15%;
+    --muted-foreground: 240deg, 5%, 65%;
+
+    --danger-muted: 356deg, 39%, 19%;
+
+    --border: 240deg, 3.7%, 15.9%;
+  }
+
+  * {
+    @apply border-border dark:shadow-black;
+  }
+
+  body {
+    @apply bg-base-background text-base-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+

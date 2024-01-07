@@ -1,0 +1,95 @@
+package layouts;
+
+import "os"
+
+type SocialData struct {
+	Title       string
+	Description string
+	Image       string
+}
+
+type MetaData struct {
+	Title       string
+	Description string
+}
+
+type PageData struct {
+	MetaData
+	SocialData
+	HeadComponent templ.Component
+}
+
+var EmptyHead = emptyHead()
+
+script liveReload(port string) {
+  let socket;
+  let retries = 0;
+  const maxRetries = 20;
+
+  function connect() {
+    if (retries >= maxRetries) {
+      console.error("Could not establish connection for hot reloading");
+      return;
+    }
+
+    socket = new WebSocket("ws://localhost:" + port);
+
+    socket.onopen = function() {
+      console.log("Connected to server for hot reloading");
+      retries = 0;
+    };
+
+    socket.onmessage = function(event) {
+      if (event.data === "reload") {
+        console.log("Reloading page");
+        location.reload();
+      }
+    };
+
+    socket.onclose = function() {
+      retries++;
+      setTimeout(connect, 100);
+    };
+  }
+
+  connect();
+}
+
+templ Base(data PageData) {
+	<!DOCTYPE html>
+	<html lang="en" class="dark">
+		<head>
+			<meta charset="UTF-8"/>
+			<title>{ data.MetaData.Title }</title>
+			<meta name="viewport" content="width=device-width,initial-scale=1"/>
+			<meta name="description" content={ data.MetaData.Description }/>
+			<link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+			<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+			<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+			<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+			<link rel="manifest" href="/site.webmanifest"/>
+			<meta name="theme-color" content="#3b82f6"/>
+			@socialCard(data.SocialData)
+			@data.HeadComponent
+		</head>
+		<body>
+			{ children... }
+			if (os.Getenv("GOENV") == "development") {
+				@liveReload("1234")
+			}
+		</body>
+	</html>
+}
+
+templ socialCard(data SocialData) {
+	<meta property="og:title" content={ data.Title }/>
+	<meta property="og:description" content={ data.Description }/>
+	<meta property="og:image" content={ data.Image }/>
+	<meta name="twitter:card" content="summary_large_image"/>
+	<meta name="twitter:title" content={ data.Title }/>
+	<meta name="twitter:description" content={ data.Description }/>
+	<meta name="twitter:image" content={ data.Image }/>
+}
+
+templ emptyHead() {
+}

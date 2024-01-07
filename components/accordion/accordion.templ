@@ -1,0 +1,102 @@
+package accordion;
+
+type Variant string
+type Size string
+
+type AccordionItemProps struct {
+	ID           string
+	Class        string
+	Trigger      string
+	TriggerClass string
+	Content      string
+	ContentClass string
+	Open         bool
+}
+
+const (
+	Single Variant = "single"
+	Multi  Variant = "multi"
+)
+
+templ Accordion(variant Variant, class string) {
+	<div class={ "w-full", class } data-accordion-variant={ string(variant) }>
+		{ children... }
+	</div>
+}
+
+templ AccordionItem(props AccordionItemProps) {
+	<div class={ "border-b", props.Class } data-state="closed">
+		@AccordionTrigger(props.ID, props.Trigger, props.TriggerClass)
+		@AccordionContent(props.ID, props.Content, props.ContentClass)
+		if props.Open {
+			@accordionScript(props.ID)
+		}
+	</div>
+}
+
+templ AccordionTrigger(id string, text string, class string) {
+	<h3 class="flex" data-state="closed">
+		<button id={ id + "-t" } class={ "flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180", class } aria-expanded="false" data-state="closed" aria-controlls={ id + "-c" } data-accordion onclick={ accordionScript(id) }>
+			{ text }
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 transition-transform duration-200" aria-hidden="true">
+				<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
+			</svg>
+		</button>
+	</h3>
+}
+
+templ AccordionContent(id string, text string, class string) {
+	<div id={ id + "-c" } class="overflow-hidden text-sm transition-all hidden duration-300 ease-out" data-state="closed" role="region" aria-labelledby={ id + "-t" } style="height:0px;">
+		<div class={ "pb-4 pt-0", class }>
+			{ text }
+		</div>
+	</div>
+}
+
+script accordionScript(id string) {
+  const triggerId = `${id}-t`;
+  const contentId = `${id}-c`;
+  const triggerEl = document.getElementById(triggerId);
+  const contentEl = document.getElementById(contentId);
+  const accordionContainer = contentEl.closest('[data-accordion-variant]');
+  const variant = accordionContainer.getAttribute('data-accordion-variant');
+  const isOpen = triggerEl.getAttribute('aria-expanded') === 'true';
+
+  triggerEl.setAttribute('aria-expanded', !isOpen);
+  contentEl.setAttribute('data-state', isOpen ? 'closed' : 'open');
+  triggerEl.setAttribute('data-state', isOpen ? 'closed' : 'open');
+
+  if (isOpen) {
+    contentEl.style.height = '0px';
+    setTimeout(() => {
+      contentEl.classList.add('hidden');
+    }, 300);
+  } else {
+    contentEl.classList.remove('hidden');
+    const contentHeight = contentEl.scrollHeight;
+    contentEl.style.height = `${contentHeight}px`;
+
+		if (variant === 'single') {
+			console.log('single');
+			const openTriggers = accordionContainer.querySelectorAll('button[data-state=open]');
+			for (let i = 0; i < openTriggers.length; i++) {
+				const openTrigger = openTriggers[i];
+				const openTriggerId = openTrigger.getAttribute('id');
+				const openContentId = openTriggerId.replace('-t', '-c');
+				const openContent = document.getElementById(openContentId);
+
+				if (openContentId === contentId) {
+					continue;
+				}
+
+				openTrigger.setAttribute('aria-expanded', false);
+				openContent.setAttribute('data-state', 'closed');
+				openTrigger.setAttribute('data-state', 'closed');
+				openContent.style.height = '0px';
+				setTimeout(() => {
+					openContent.classList.add('hidden');
+				}, 300);
+			}
+		}
+  }
+}

@@ -1,0 +1,32 @@
+package button;
+
+type Variant string
+type Size string
+
+type Props struct {
+	Variant Variant
+	Size    Size
+	Class   string
+	Attrs   templ.Attributes
+}
+
+const (
+	base string = "inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+
+	Default Variant = "bg-primary text-primary-foreground hover:bg-primary/90"
+	Danger  Variant = "bg-danger text-danger-foreground hover:bg-danger/90"
+	Outline Variant = "border bg-base-background hover:bg-muted-background"
+	Ghost   Variant = "hover:bg-muted-background"
+	Link    Variant = "text-primary underline-offset-4 hover:underline"
+
+	Base Size = "h-10 px-4 py-2"
+	Sm   Size = "h-9 px-3"
+	Lg   Size = "h-11 rounded-md px-8"
+	Icon Size = "h-10 w-10"
+)
+
+templ Button(options Props) {
+	<button class={ base, string(options.Variant), string(options.Size), string(options.Class) } { options.Attrs... }>
+		{ children... }
+	</button>
+}

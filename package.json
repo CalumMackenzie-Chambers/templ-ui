@@ -1,0 +1,29 @@
+{
+  "name": "templ-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "watch:tailwindcss": "tailwindcss -i ./app/src/css/input.css -o ./app/static/css/styles.css --watch",
+    "watch:server": "node ./app/websocket.js",
+    "watch:golang": "air",
+    "dev": "concurrently \"npm run watch:*\" --raw",
+    "build:tailwindcss": "tailwindcss -i ./app/src/css/input.css -o ./app/static/css/styles.css --minify",
+    "build:go": "templ generate && go build -o ./dist/main",
+    "build": "concurrently \"npm run build:*\" --raw"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.3.1",
+    "esbuild": "0.19.9",
+    "loadash": "^1.0.0",
+    "tailwindcss": "3.3.5",
+    "typescript": "^5.3.3",
+    "ws": "^8.14.2"
+  }
+}

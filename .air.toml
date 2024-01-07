@@ -1,0 +1,43 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  args_bin = []
+  bin = "./tmp/main"
+  cmd = "templ generate && go build -o ./tmp/main ./cmd/server.go"
+  delay = 0
+  exclude_dir = ["tmp", "docs/static", "node_modules"]
+  exclude_file = []
+  exclude_regex = ["_test.go", ".*_templ.go"]
+  exclude_unchanged = false
+  follow_symlink = false
+  full_bin = "GOENV=development ./tmp/main"
+  include_dir = []
+  include_ext = ["go", "templ"]
+  include_file = []
+  kill_delay = "0s"
+  log = "./logs/air.log"
+  poll = false
+  poll_interval = 0
+  rerun = false
+  rerun_delay = 0
+  send_interrupt = false
+  stop_on_error = false
+
+[color]
+  app = ""
+  build = "yellow"
+  main = "magenta"
+  runner = "green"
+  watcher = "cyan"
+
+[log]
+  main_only = false
+  time = true
+
+[misc]
+  clean_on_exit = false
+
+[screen]
+  clear_on_rebuild = false
+  keep_scroll = true

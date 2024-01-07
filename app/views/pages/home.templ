@@ -1,0 +1,119 @@
+package pages;
+
+import (
+	"github.com/CalumMackenzie-Chambers/templ-ui/components/button"
+	"github.com/CalumMackenzie-Chambers/templ-ui/components/accordion"
+)
+
+templ Home() {
+	<main class="m-auto xl:container px-6 md:max-lg:px-12 space-y-12">
+		<h1 class="text-4xl lg:text5xl font-bold my-6">Components</h1>
+		<section id="buttons">
+			<h2 class="text-2xl lg:text3xl font-bold mb-4">Buttons</h2>
+			<h3 class="text-lg text-muted-foreground mb-2">Variants</h3>
+			<div class="flex gap-4 items-center">
+				@button.Button(button.Props{
+						Variant: button.Default,
+						Size: button.Base,
+				}) {
+					Default
+				}
+				@button.Button(button.Props{
+						Variant: button.Outline,
+						Size: button.Base,
+				}) {
+					Outline
+				}
+				@button.Button(button.Props{
+						Variant: button.Danger,
+						Size: button.Base,
+				}) {
+					Danger
+				}
+				@button.Button(button.Props{
+						Variant: button.Ghost,
+						Size: button.Base,
+				}) {
+					Ghost
+				}
+				@button.Button(button.Props{
+						Variant: button.Link,
+						Size: button.Base,
+				}) {
+					Link
+				}
+			</div>
+			<h3 class="text-lg text-muted-foreground mb-2 mt-8">Sizes</h3>
+			<div class="flex gap-4 items-center">
+				@button.Button(button.Props{
+						Variant: button.Outline,
+						Size: button.Base,
+				}) {
+					Base
+				}
+				@button.Button(button.Props{
+						Variant: button.Outline,
+						Size: button.Sm,
+				}) {
+					Small
+				}
+				@button.Button(button.Props{
+						Variant: button.Outline,
+						Size: button.Lg,
+				}) {
+					Large
+				}
+				@button.Button(button.Props{
+						Variant: button.Outline,
+						Size: button.Icon,
+				}) {
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 align-bottom">
+						<path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"></path>
+					</svg>
+				}
+			</div>
+		</section>
+		<section id="accordion">
+			<div class="max-w-lg rounded border p-8">
+				<h2 class="text-2xl lg:text3xl font-bold mb-4">Accordions</h2>
+				<h3 class="text-lg text-muted-foreground">Single</h3>
+				@accordion.Accordion(accordion.Single ,"") {
+					@accordion.AccordionItem(accordion.AccordionItemProps{
+					ID: "single-1",
+					Trigger: "Is it accessible?",
+					Content: "Yes. It adheres to the WAI-ARIA design pattern.",
+					Open: true,
+				})
+					@accordion.AccordionItem(accordion.AccordionItemProps{
+					ID: "single-2",
+					Trigger: "Is it styled?",
+					Content: "Yes. It comes with default styles that matches the other components' aesthetic.",
+				})
+					@accordion.AccordionItem(accordion.AccordionItemProps{
+					ID: "single-3",
+					Trigger: "Is it animated?",
+					Content: "Yes. It's animated by default, but you can disable it if you prefer.",
+				})
+				}
+				<h3 class="text-lg text-muted-foreground mt-8">Multi</h3>
+				@accordion.Accordion(accordion.Multi ,"") {
+					@accordion.AccordionItem(accordion.AccordionItemProps{
+					ID: "multi-1",
+					Trigger: "Is it accessible?",
+					Content: "Yes. It adheres to the WAI-ARIA design pattern.",
+				})
+					@accordion.AccordionItem(accordion.AccordionItemProps{
+					ID: "multi-2",
+					Trigger: "Is it styled?",
+					Content: "Yes. It comes with default styles that matches the other components' aesthetic.",
+				})
+					@accordion.AccordionItem(accordion.AccordionItemProps{
+					ID: "multi-3",
+					Trigger: "Is it animated?",
+					Content: "Yes. It's animated by default, but you can disable it if you prefer.",
+				})
+				}
+			</div>
+		</section>
+	</main>
+}
