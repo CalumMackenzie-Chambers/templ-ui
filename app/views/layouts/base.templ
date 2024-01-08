@@ -1,6 +1,7 @@
 package layouts;
 
 import "os"
+import "github.com/CalumMackenzie-Chambers/templ-ui/app/views/components"
 
 type SocialData struct {
 	Title       string
@@ -73,6 +74,7 @@ templ Base(data PageData) {
 			@data.HeadComponent
 		</head>
 		<body>
+			@components.Navbar()
 			{ children... }
 			if (os.Getenv("GOENV") == "development") {
 				@liveReload("1234")

@@ -1,0 +1,20 @@
+package separator;
+
+type Props struct {
+	Direction Direction
+	Class     string
+}
+type Direction string
+
+const (
+	Horizontal Direction = "horizontal"
+	Vertical   Direction = "vertical"
+)
+
+templ Separator(props Props) {
+	if props.Direction == Vertical {
+		<span class={ "tw-h-full tw-border-r inline-block", props.Class }></span>
+	} else {
+		<hr class={ "tw-border-t tw-rounded-full tw-w-full", props.Class }/>
+	}
+}

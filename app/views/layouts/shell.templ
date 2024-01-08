@@ -1,0 +1,17 @@
+package layouts;
+
+import "github.com/CalumMackenzie-Chambers/templ-ui/app/views/components"
+
+templ Shell(data PageData) {
+	@Base(data) {
+		<div class="flex-1 border-b">
+			<div class="container flex-1 items-start md:grid md:grid-cols-[180px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-10 mx-auto px-4 md:px-16">
+				@components.Sidebar()
+				<main class="py-8">
+					{ children... }
+				</main>
+			</div>
+		</div>
+		@components.Footer()
+	}
+}

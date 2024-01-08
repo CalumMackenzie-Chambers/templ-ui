@@ -2,19 +2,19 @@ package handlers
 
 import (
 	"github.com/CalumMackenzie-Chambers/templ-ui/app/views/layouts"
-	"github.com/CalumMackenzie-Chambers/templ-ui/app/views/pages"
+	"github.com/CalumMackenzie-Chambers/templ-ui/app/views/pages/examples"
 	"github.com/labstack/echo/v4"
 )
 
-type IndexHandler struct {
+type ExamplesHandler struct {
 }
 
-func (h IndexHandler) GetHome(c echo.Context) error {
+func (h ExamplesHandler) GetExamples(c echo.Context) error {
 
 	opts := renderOptions{
 		Ctx:           c,
-		Component:     pages.Home(),
-		BaseComponent: layouts.Shell(indexMeta),
+		Component:     examples.Examples(),
+		BaseComponent: layouts.Base(indexMeta),
 		PageTitle:     indexMeta.MetaData.Title,
 	}
 	return render(opts)

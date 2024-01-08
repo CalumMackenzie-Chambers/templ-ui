@@ -1,0 +1,125 @@
+package components;
+
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/typography"
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/code_block"
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/alert"
+
+templ Alert() {
+	@typography.MainHeading("Alert")
+	@typography.SubHeading("A set of minimally styled alert components built with tailwind css")
+	<section id="example" class="mb-8">
+		@typography.SectionHeading("Useage Example")
+		<h3 class="text-xl font-semibold">1. Installation</h3>
+		<p class="text-muted-foreground">Copy and paste the following code block into your components directory for your application</p>
+		@code_block.CodeBlock() {
+			{ `package alert;
+
+type Variant string
+type AlertProps struct {
+	Variant Variant
+	Icon    templ.Component
+	Title   string
+	Text    string
+}
+
+const (
+	Default      Variant = "[&>svg]:text-base-foreground bg-base-background text-base-foreground"
+	DefaultMuted Variant = "[&>svg]:text-base-foreground bg-muted-background text-base-foreground border-muted-foreground"
+	Primary      Variant = "[&>svg]:text-primary bg-base-background text-primary border-primary"
+	PrimaryMuted Variant = "[&>svg]:text-primary bg-primary-muted text-primary border-primary"
+	Danger       Variant = "[&>svg]:text-danger bg-base-background text-danger border-danger"
+	DangerMuted  Variant = "[&>svg]:text-danger bg-danger-muted text-danger border-danger"
+)
+
+templ Alert(props AlertProps) {
+	<div class={ "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4", string(props.Variant) } role="alert">
+		@props.Icon
+		<h5 class="mb-1 font-medium leading-none tracking-tight">{ props.Title }</h5>
+		<div class="text-sm [&_p]:leading-relaxed">{ props.Text }</div>
+	</div>
+}
+
+templ Warning() {
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"></path>
+	</svg>
+}
+
+templ Info() {
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+		<path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"></path>
+	</svg>
+}
+
+templ CommandLine() {
+	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+		<path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"></path>
+	</svg>
+}` }
+		}
+		<h3 class="text-xl font-semibold">2. Useage</h3>
+		<p class="text-muted-foreground">Import the component into your file and use as in the code block below</p>
+		@code_block.CodeBlock() {
+			{ ` @alert.Alert(alert.AlertProps{
+	Variant: alert.Default,
+	Icon: alert.Info(),
+	Title: "Default Alert",
+	Text: "This is the default alert variant that will use the standard foreground and background colors",
+})
+` }
+		}
+	</section>
+	<section id="variants" class="mb-8">
+		@typography.SectionHeading("Variants")
+		<div class="space-y-4">
+			<div class="max-w-xl">
+				@alert.Alert(alert.AlertProps{
+					Variant: alert.Default,
+					Icon: alert.Info(),
+					Title: "Default Alert",
+					Text: "This is the default alert variant that will use the standard foreground and background colors",
+				})
+			</div>
+			<div class="max-w-xl">
+				@alert.Alert(alert.AlertProps{
+					Variant: alert.DefaultMuted,
+					Icon: alert.Info(),
+					Title: "Default Muted Alert",
+					Text: "This is the default muted alert variant that will use the standard foreground and muted background colors",
+				})
+			</div>
+			<div class="max-w-xl">
+				@alert.Alert(alert.AlertProps{
+					Variant: alert.Primary,
+					Icon: alert.CommandLine(),
+					Title: "Primary Alert",
+					Text: "This is the primary alert variant that will use the primary color as foreground and base background colors",
+				})
+			</div>
+			<div class="max-w-xl">
+				@alert.Alert(alert.AlertProps{
+					Variant: alert.PrimaryMuted,
+					Icon: alert.CommandLine(),
+					Title: "Primary Muted Alert",
+					Text: "This is the primary muted alert variant that will use the primary color as foreground and primary muted background colors - Use with caution, may not pass accesibility",
+				})
+			</div>
+			<div class="max-w-xl">
+				@alert.Alert(alert.AlertProps{
+							Variant: alert.Danger,
+							Icon: alert.Warning(),
+							Title: "Danger Alert",
+							Text: "This is the danger alert variant that uses the danger color as foreground with base background and border colors.",
+					})
+			</div>
+			<div class="max-w-xl">
+				@alert.Alert(alert.AlertProps{
+							Variant: alert.DangerMuted,
+							Icon: alert.Warning(),
+							Title: "Danger Muted Alert",
+							Text: "This is the danger muted alert variant that uses the danger color as foreground with danger-muted background and border colors - Use with caution, may not pass accessibility.",
+					})
+			</div>
+		</div>
+	</section>
+}
