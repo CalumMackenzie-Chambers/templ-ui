@@ -17,5 +17,18 @@ func main() {
 	indexHandler := handlers.IndexHandler{}
 	e.GET("/", indexHandler.GetHome)
 
+	componentHandler := handlers.ComponentHandler{}
+	e.GET("/components", componentHandler.GetIndex)
+	e.GET("/components/button", componentHandler.GetButton)
+	e.GET("/components/accordion", componentHandler.GetAccordion)
+	e.GET("/components/alert", componentHandler.GetAlert)
+	e.GET("/components/avatar", componentHandler.GetAvatar)
+
+	docHandler := handlers.DocsHandler{}
+	e.GET("/docs", docHandler.GetDocs)
+
+	examplesHandler := handlers.ExamplesHandler{}
+	e.GET("/examples", examplesHandler.GetExamples)
+
 	e.Logger.Fatal(e.Start(":1323"))
 }

@@ -1,0 +1,127 @@
+package components;
+
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/typography"
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/code_block"
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/button"
+
+templ Button() {
+	@typography.MainHeading("Button")
+	@typography.SubHeading("A set of minimally styled button / link components")
+	<section id="example" class="mb-8">
+		@typography.SectionHeading("Useage Example")
+		<h3 class="text-xl font-semibold">1. Installation</h3>
+		<p class="text-muted-foreground">Copy and paste the following code block into your components directory for your application</p>
+		@code_block.CodeBlock() {
+			{ `package button;
+
+type Variant string
+type Size string
+
+type Props struct {
+	Variant Variant
+	Size    Size
+	Class   string
+	Attrs   templ.Attributes
+}
+
+const (
+	base string = "inline-flex items-center justify-center whitespace-nowrap rounded text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+
+	Default Variant = "bg-primary text-primary-foreground hover:bg-primary/90"
+	Danger  Variant = "bg-danger text-danger-foreground hover:bg-danger/90"
+	Outline Variant = "border bg-base-background hover:bg-muted-background"
+	Ghost   Variant = "hover:bg-muted-background"
+	Link    Variant = "text-primary underline-offset-4 hover:underline"
+
+	Base Size = "h-10 px-4 py-2"
+	Sm   Size = "h-9 px-3"
+	Lg   Size = "h-11 rounded-md px-8"
+	Icon Size = "h-10 w-10"
+)
+
+templ Button(options Props) {
+	<button class={ base, string(options.Variant), string(options.Size), string(options.Class) } { options.Attrs... }>
+		{ children... }
+	</button>
+}` }
+		}
+		<h3 class="text-xl font-semibold">2. Useage</h3>
+		<p class="text-muted-foreground">Import the component into your file and use as in the code block below</p>
+		@code_block.CodeBlock() {
+			{ `@button.Button(button.Props{
+	Variant: button.Default,
+	Size: button.Base,
+	Class: "!w-full",
+	Attrs: templ.Attributes{"hx-get": "/api/endpoint"}
+}) {
+	Click Me
+}` }
+		}
+	</section>
+	<section id="variants" class="mb-8">
+		@typography.SectionHeading("Variants")
+		<div class="flex gap-4 items-center">
+			@button.Button(button.Props{
+					Variant: button.Default,
+					Size: button.Base,
+			}) {
+				Default
+			}
+			@button.Button(button.Props{
+					Variant: button.Outline,
+					Size: button.Base,
+			}) {
+				Outline
+			}
+			@button.Button(button.Props{
+					Variant: button.Danger,
+					Size: button.Base,
+			}) {
+				Danger
+			}
+			@button.Button(button.Props{
+					Variant: button.Ghost,
+					Size: button.Base,
+			}) {
+				Ghost
+			}
+			@button.Button(button.Props{
+					Variant: button.Link,
+					Size: button.Base,
+			}) {
+				Link
+			}
+		</div>
+	</section>
+	<section id="Sizes">
+		@typography.SectionHeading("Sizes")
+		<div class="flex gap-4 items-center">
+			@button.Button(button.Props{
+					Variant: button.Outline,
+					Size: button.Base,
+			}) {
+				Base
+			}
+			@button.Button(button.Props{
+					Variant: button.Outline,
+					Size: button.Sm,
+			}) {
+				Small
+			}
+			@button.Button(button.Props{
+					Variant: button.Outline,
+					Size: button.Lg,
+			}) {
+				Large
+			}
+			@button.Button(button.Props{
+					Variant: button.Outline,
+					Size: button.Icon,
+			}) {
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 align-bottom">
+					<path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"></path>
+				</svg>
+			}
+		</div>
+	</section>
+}
