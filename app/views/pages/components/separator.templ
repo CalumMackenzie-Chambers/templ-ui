@@ -1,0 +1,81 @@
+package components;
+
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/typography"
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/code_block"
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/separator"
+
+templ Separator() {
+	@typography.MainHeading("Separator")
+	@typography.SubHeading("A minimally styled horizontal separator")
+	<section id="example" class="mb-8">
+		@typography.SectionHeading("Useage Example")
+		<h3 class="text-xl font-semibold">1. Installation</h3>
+		<p class="text-muted-foreground">Copy and paste the following code block into your components directory for your application</p>
+		@code_block.CodeBlock() {
+			{ `package separator;
+
+type Props struct {
+	Direction Direction
+	Class     string
+}
+type Direction string
+
+const (
+	Horizontal Direction = "horizontal"
+	Vertical   Direction = "vertical"
+)
+
+templ Separator(props Props) {
+	if props.Direction == Vertical {
+		<span class={ "h-full block w-0.5 bg-muted-background", props.Class } role="none"></span>
+	} else {
+		<hr class={ "border-t-2 rounded-full w-full", props.Class }/>
+	}
+}` }
+		}
+		<h3 class="text-xl font-semibold">2. Useage</h3>
+		<p class="text-muted-foreground">Import the component into your file and use as in the code block below</p>
+		@code_block.CodeBlock() {
+			{ `<div class="max-w-fit">
+	<h3 class="text-lg text-muted-foreground text-center">Horizontal / Veritcal</h3>
+	@separator.Separator(separator.Props{
+			Direction: separator.Horizontal,
+			Class: "mt-1",
+		})
+
+	<div class="flex items-center space-x-4 h-5">
+		<div>Item 1</div>
+		@separator.Separator(separator.Props{
+			Direction: separator.Vertical,
+		})
+		<div>Item 2</div>
+		@separator.Separator(separator.Props{
+			Direction: separator.Vertical,
+		})
+		<div>Item 3</div>
+	</div>
+</div>` }
+		}
+	</section>
+	<section id="variants" class="mb-8">
+		@typography.SectionHeading("Variants")
+		<div class="max-w-fit">
+			<h3 class="text-lg text-muted-foreground text-center">Horizontal / Veritcal</h3>
+			@separator.Separator(separator.Props{
+					Direction: separator.Horizontal,
+					Class: "mt-1",
+				})
+			<div class="flex items-center space-x-4 h-5">
+				<div>Item 1</div>
+				@separator.Separator(separator.Props{
+					Direction: separator.Vertical,
+				})
+				<div>Item 2</div>
+				@separator.Separator(separator.Props{
+					Direction: separator.Vertical,
+				})
+				<div>Item 3</div>
+			</div>
+		</div>
+	</section>
+}

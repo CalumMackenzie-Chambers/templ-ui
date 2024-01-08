@@ -13,8 +13,8 @@ const (
 
 templ Separator(props Props) {
 	if props.Direction == Vertical {
-		<span class={ "tw-h-full tw-border-r inline-block", props.Class }></span>
+		<span class={ "h-full block w-0.5 bg-muted-background", props.Class } role="none"></span>
 	} else {
-		<hr class={ "tw-border-t tw-rounded-full tw-w-full", props.Class }/>
+		<hr class={ "border-t-2 rounded-full w-full", props.Class }/>
 	}
 }
