@@ -23,6 +23,7 @@ func main() {
 	e.GET("/components/accordion", componentHandler.GetAccordion)
 	e.GET("/components/alert", componentHandler.GetAlert)
 	e.GET("/components/avatar", componentHandler.GetAvatar)
+	e.GET("/components/separator", componentHandler.GetSeparator)
 
 	docHandler := handlers.DocsHandler{}
 	e.GET("/docs", docHandler.GetDocs)

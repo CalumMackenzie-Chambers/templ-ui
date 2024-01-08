@@ -59,3 +59,15 @@ var avatarMeta = layouts.PageData{
 	},
 	HeadComponent: layouts.EmptyHead,
 }
+
+var separatorMeta = layouts.PageData{
+	MetaData: layouts.MetaData{
+		Title:       "Separator - templ-ui - UI componennts for golang templ and tailwind",
+		Description: "Build websites faster using set of standerd, minimally styled separators for templ and go / golang. Components for templ and tailwind with minimal javascript",
+	},
+	SocialData: layouts.SocialData{
+		Title:       "Separator - templ-ui - UI componennts for golang templ and tailwind",
+		Description: "Build websites faster using set of standerd, minimally styled separators for templ and go / golang. Components for templ and tailwind with minimal javascript",
+	},
+	HeadComponent: layouts.EmptyHead,
+}

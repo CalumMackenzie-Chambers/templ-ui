@@ -60,3 +60,13 @@ func (h ComponentHandler) GetAvatar(c echo.Context) error {
 	}
 	return render(opts)
 }
+
+func (h ComponentHandler) GetSeparator(c echo.Context) error {
+	opts := renderOptions{
+		Ctx:           c,
+		Component:     components.Separator(),
+		BaseComponent: layouts.Shell(separatorMeta),
+		PageTitle:     separatorMeta.MetaData.Title,
+	}
+	return render(opts)
+}
