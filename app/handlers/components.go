@@ -73,10 +73,10 @@ func (h ComponentHandler) GetSeparator(c echo.Context) error {
 
 func (h ComponentHandler) GetBadge(c echo.Context) error {
 	opts := renderOptions{
-		Ctx: c,
-		Component: components.Badge(),
+		Ctx:           c,
+		Component:     components.Badge(),
 		BaseComponent: layouts.Shell(badgeMeta),
-		PageTitle: badgeMeta.MetaData.Title,
+		PageTitle:     badgeMeta.MetaData.Title,
 	}
 	return render(opts)
 }
