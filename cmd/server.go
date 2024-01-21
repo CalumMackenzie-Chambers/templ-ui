@@ -24,6 +24,7 @@ func main() {
 	e.GET("/components/alert", componentHandler.GetAlert)
 	e.GET("/components/avatar", componentHandler.GetAvatar)
 	e.GET("/components/separator", componentHandler.GetSeparator)
+	e.GET("/components/badge", componentHandler.GetBadge)
 
 	docHandler := handlers.DocsHandler{}
 	e.GET("/docs", docHandler.GetDocs)
