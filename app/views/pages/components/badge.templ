@@ -1,0 +1,70 @@
+package components;
+
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/typography"
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/code_block"
+import "github.com/CalumMackenzie-Chambers/templ-ui/components/badge"
+
+templ Badge() {
+	@typography.MainHeading("Badge")
+	@typography.SubHeading("A set of minimally styled Bagdge components built with tailwind css")
+	<section id="example" class="mb-8">
+		@typography.SectionHeading("Useage Example")
+		<h3 class="text-xl font-semibold">1. Installation</h3>
+		<p class="text-muted-foreground">Copy and paste the following code block into your components directory for your application</p>
+		@code_block.CodeBlock() {
+			{ `package badge;
+
+type Variant string
+
+type Props struct {
+	Text    string
+	Variant Variant
+}
+
+const (
+	Primary Variant = "border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+	Secondary Variant = "border-base-foreground"
+	Muted Variant = "bg-muted-background border-muted-foreground text-muted-foreground"
+	Danger Variant = "bg-danger text-danger-foreground border-transparent"
+)
+
+templ Badge(props Props) {
+	<div class={ string(props.Variant), "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" }>
+		{ props.Text }
+	</div>
+}` }
+		}
+		<h3 class="text-xl font-semibold">2. Useage</h3>
+		<p class="text-muted-foreground">Import the component into your file and use as in the code block below</p>
+		@code_block.CodeBlock() {
+			{ `@badge.Badge(badge.Props{
+	Variant: badge.Primary,
+	Text: "Primary",
+})` }
+		}
+	</section>
+	<section id="variants" class="mb-8">
+		@typography.SectionHeading("Variants")
+		<div class="space-x-4">
+			@badge.Badge(badge.Props{
+				Variant: badge.Primary,
+				Text: "Primary",
+			})
+
+			@badge.Badge(badge.Props{
+				Variant: badge.Secondary,
+				Text: "Secondary",
+			})
+
+			@badge.Badge(badge.Props{
+				Variant: badge.Muted,
+				Text: "Muted",
+			})
+
+			@badge.Badge(badge.Props{
+				Variant: badge.Danger,
+				Text: "Danger",
+			})
+		</div>
+	</section>
+}

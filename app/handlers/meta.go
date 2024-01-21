@@ -71,3 +71,15 @@ var separatorMeta = layouts.PageData{
 	},
 	HeadComponent: layouts.EmptyHead,
 }
+
+var badgeMeta = layouts.PageData{
+	MetaData: layouts.MetaData{
+		Title:       "Badge - templ-ui - UI componennts for golang templ and tailwind",
+		Description: "Build websites faster using set of standerd, minimally styled separators for templ and go / golang. Components for templ and tailwind with minimal javascript",
+	},
+	SocialData: layouts.SocialData{
+		Title:       "Badge - templ-ui - UI componennts for golang templ and tailwind",
+		Description: "Build websites faster using set of standerd, minimally styled separators for templ and go / golang. Components for templ and tailwind with minimal javascript",
+	},
+	HeadComponent: layouts.EmptyHead,
+}
